@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  arxiv-to-epub:
+    build: .
+    image: arxiv-to-epub:latest
+    container_name: arxiv_to_epub
+    volumes:
+      - ./output:/app/output  # bind-mount local output directory
+    entrypoint: ["python", "arxiv_to_epub.py"]
+    command: ["--id", "2405.06128v1", "--output", "output/paper.epub"]
+    restart: on-failure
